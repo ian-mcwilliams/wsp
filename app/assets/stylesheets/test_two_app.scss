@@ -1,0 +1,41 @@
+html,body,p,div,img,h1,h2,h3,h4,li,ul,dl,dd,dt,form,table,td,tr{ margin:0; padding:0; border:0; border-collapse:0; border-spacing:0; } input,select{ margin:0; padding:0; }
+
+#header {
+  height: 100px;
+  background-color: aqua;
+  text-align: center;
+}
+
+h1 {
+  line-height:3em;
+}
+
+#makePredictionsForm {
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+}
+
+.predictTeam {
+  height: 30px;
+  width: 300px;
+  padding: 1px;
+}
+
+.predictTeamItem {
+  height: 30px;
+  width: 150px;
+  float: left;
+}
+
+.redTeam {
+  background-color: red;
+}
+
+.whiteTeam {
+  background-color: white;
+}
+
+.pinkTeam {
+  background-color: pink;
+}
