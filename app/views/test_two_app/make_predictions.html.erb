@@ -6,7 +6,7 @@
 
 <div id="makePredictionsForm">
   <%= form_tag(controller: "test_two_app", action: "make_predictions", method: "post") do %>
-    <%= render 'match_input' %>
+    <%= get_predict_matches_html %>
     <%= content_tag(:div, submit_tag("Predict"), class: "submitDiv") %>
   <% end %>
 </div>

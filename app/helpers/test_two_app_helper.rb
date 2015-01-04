@@ -18,5 +18,15 @@ module TestTwoAppHelper
                 class: 'predictTeamItem')
   end
 
+  def get_predict_matches_html
+    content = ActiveSupport::SafeBuffer.new('')
+    @matches.each do |match|
+      content << content_tag(:div,
+         get_predict_match_html(match),
+         class: 'predictMatch')
+    end
+    content
+  end
+
 end
 
