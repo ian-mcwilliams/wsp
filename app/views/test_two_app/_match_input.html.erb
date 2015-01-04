@@ -1,13 +1,6 @@
 
 <% @matches.each do |match| %>
-    <div>
-      <div class="predictTeam <%= "#{match[:home_team][:color]}Team" %>">
-        <div class="predictTeamItem"><%= match[:home_team][:name] %></div>
-        <div class="predictTeamItem"><input type="text" /></div>
-      </div>
-      <div class="predictTeam <%= "#{match[:away_team][:color]}Team" %>">
-        <div class="predictTeamItem"><%= match[:away_team][:name] %></div>
-        <div class="predictTeamItem"><input type="text" /></div>
-      </div>
-    </div>
+     <%= content_tag(:div,
+         get_predict_match_html(match),
+         class: 'predictMatch') %>
 <% end %>
