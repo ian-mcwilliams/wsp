@@ -1,12 +1,3 @@
-<div id="header">
-  <h1>
-    Make Predictions
-  </h1>
-</div>
+<%= get_page_html(:predict) %>
 
-<div id="makePredictionsForm">
-  <%= form_tag(controller: "test_two_app", action: "make_predictions", method: "post") do %>
-    <%= get_predict_matches_html %>
-    <%= content_tag(:div, submit_tag("Predict"), class: "submitDiv") %>
-  <% end %>
-</div>
+

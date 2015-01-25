@@ -3,11 +3,15 @@ Rails.application.routes.draw do
 
   get 'test_two_app/view_all_predictions'
 
+  get 'test_two_app/login'
+
+  get 'predict', to: 'test_two_app#make_predictions'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'test_two_app#make_predictions'
+  root 'test_two_app#login'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
