@@ -11,22 +11,64 @@ module TestTwoAppHelper
     @content = ''
     case page_name
       when :login
-        get_login_html_str
+        get_login_page_html
       when :predict
         get_make_predictions_page_html
       when :view_all
-        get_view_all_predictions_header_html
+        get_view_all_predictions_page_html
     end
     ActiveSupport::SafeBuffer.new(HtmlBeautifier.beautify(@content))
   end
 
+
   # =====================================================================================
-  # =============================   VIEW PREDICTIONS FORM   =============================
+  # ==================================   LOGIN FORM   ===================================
   # =====================================================================================
 
-  def get_view_all_predictions_header_html
-    content_tag(:h1, 'View All Predictions', id: 'header')
+  def get_login_page_html
+    @content << content_tag(:h1, 'Login', id: 'header')
   end
+
+
+
+
+
+  def get_login_header_html
+    content_tag(:h1, 'Login', id: 'header')
+  end
+
+  def get_login_form_div_html
+    form_for(login) do |f|
+      f.label :name
+      f.text_field :name
+
+      f.label :email
+      f.email_field :email
+
+      f.label :password
+      f.password_field :password
+
+      # f.submit 'Login', class:
+
+      # "Login"
+      # 'Login'
+      # msg = 'to the\' system'
+      # "Login #{msg}"
+      # "Login to it's a knockout"
+    end
+  end
+
+
+
+=begin
+    content_tag(:div, email_field(:user, :address))
+    content_tag(:div, password_field_tag(:password))
+    content_tag(:div, label_tag :user, 'Username:')
+    content_tag(:div, submit_tag('Login'), class: 'submitDiv')
+  end
+=end
+
+end
 
   # =====================================================================================
   # =============================   PREDICT MATCHES FORM   ==============================
@@ -73,42 +115,10 @@ module TestTwoAppHelper
 
 
   # =====================================================================================
-  # ==================================   LOGIN FORM   ===================================
+  # =============================   VIEW PREDICTIONS FORM   =============================
   # =====================================================================================
 
-  def get_login_header_html
-    content_tag(:h1, 'Login', id: 'header')
+  def get_view_all_predictions_header_html
+    content_tag(:h1, 'View All Predictions', id: 'header')
   end
 
-  def get_login_form_div_html
-    form_for(login) do |f|
-      f.label :name
-      f.text_field :name
-
-      f.label :email
-      f.email_field :email
-
-      f.label :password
-      f.password_field :password
-
-      # f.submit 'Login', class:
-
-      # "Login"
-      # 'Login'
-      # msg = 'to the\' system'
-      # "Login #{msg}"
-      # "Login to it's a knockout"
-  end
-
-
-
-=begin
-    content_tag(:div, email_field(:user, :address))
-    content_tag(:div, password_field_tag(:password))
-    content_tag(:div, label_tag :user, 'Username:')
-    content_tag(:div, submit_tag('Login'), class: 'submitDiv')
-  end
-=end
-
-end
-end
