@@ -36,4 +36,7 @@ class TestTwoAppController < ApplicationController
 
   def view_all_predictions
   end
+
+  def login
+  end
 end
