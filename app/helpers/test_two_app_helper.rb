@@ -3,8 +3,8 @@ require 'htmlbeautifier'
 
 module TestTwoAppHelper
 
-  def active_support_str
-    ActiveSupport::SafeBuffer.new('')
+  def active_support_str(str='')
+    ActiveSupport::SafeBuffer.new(str)
   end
 
   def get_page_html(page_name)
@@ -17,7 +17,7 @@ module TestTwoAppHelper
       when :view_all
         get_view_all_predictions_page_html
     end
-    ActiveSupport::SafeBuffer.new(HtmlBeautifier.beautify(@content))
+    active_support_str(HtmlBeautifier.beautify(@content))
   end
 
   def get_form_input_html(text, input)
@@ -57,7 +57,6 @@ module TestTwoAppHelper
     content + content_tag(:div, submit_tag('Login'), class: 'submitDiv')
   end
 
-end
 
   # =====================================================================================
   # =============================   PREDICT MATCHES FORM   ==============================
@@ -104,4 +103,6 @@ end
   def get_view_all_predictions_header_html
     content_tag(:h1, 'View All Predictions', id: 'header')
   end
+
+end
 
