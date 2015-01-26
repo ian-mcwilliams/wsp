@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get 'predict', to: 'test_two_app#make_predictions'
 
+  get 'view', to: 'test_two_app#view_all_predictions'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

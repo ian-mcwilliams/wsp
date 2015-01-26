@@ -1,5 +1,7 @@
 class TestTwoAppController < ApplicationController
   def make_predictions
+    @current_page_title = 'Make Predictions'
+
     @matches = [
         {
             home_team: {
@@ -35,8 +37,10 @@ class TestTwoAppController < ApplicationController
   end
 
   def view_all_predictions
+    @current_page_title = 'View All Predictions'
   end
 
   def login
+    @current_page_title = 'Login'
   end
 end
