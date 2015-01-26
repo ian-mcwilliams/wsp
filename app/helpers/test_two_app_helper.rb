@@ -3,8 +3,8 @@ require 'htmlbeautifier'
 
 module TestTwoAppHelper
 
-  def active_support_str
-    ActiveSupport::SafeBuffer.new('')
+  def active_support_str(str='')
+    ActiveSupport::SafeBuffer.new(str)
   end
 
   def get_page_html(page_name)
@@ -17,7 +17,7 @@ module TestTwoAppHelper
       when :view_all
         get_view_all_predictions_page_html
     end
-    ActiveSupport::SafeBuffer.new(HtmlBeautifier.beautify(@content))
+    active_support_str(HtmlBeautifier.beautify(@content))
   end
 
   def get_form_input_html(text, input)
@@ -105,3 +105,52 @@ end
     content_tag(:h1, 'View All Predictions', id: 'header')
   end
 
+=begin
+def some_method
+  # x = 'a string of text'
+  #
+  # x.gsub(' ', '_')
+  #
+  #
+  # cars = [ "astra", "bentley", "citroen" ]
+  # a.each {|x| print x, " -- " }
+  #
+  # cars.each_with_index do |car, index|
+  #   print car
+  #   print " -- #{index} -- "
+  # end
+  #
+  # [0] => "a",
+  # [1] => "b",
+  # [2] => "c"
+  #
+  #
+  #
+  #
+  #
+  #
+  # 1
+  #
+  # :a_symbol
+  #
+  # [1, 'two', :three, [1, 2, 3, 4]]
+
+  our_hash = {
+      first_item:     'item_one',
+      item_two:       'second_item',
+      array_item:     [
+          'one',
+          'two',
+          'three x'
+      ],
+      :no_four => 'item_4'
+  }
+  ap our_hash
+
+  our_str = ''
+  our_hash.each do |key, value|
+    our_str << "the key is #{key}</br>"
+    our_str << "the value is #{value}</br>"
+  end
+  active_support_str(our_str)
+end=end
