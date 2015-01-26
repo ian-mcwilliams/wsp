@@ -1,4 +1,5 @@
 class TestTwoAppController < ApplicationController
+
   def make_predictions
     @current_page_title = 'Make Predictions'
 
