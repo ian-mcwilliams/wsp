@@ -7,17 +7,22 @@ module TestTwoAppHelper
     ActiveSupport::SafeBuffer.new(str)
   end
 
+  def prepare_html_str(str)
+    active_support_str(HtmlBeautifier.beautify(str))
+  end
+
   def get_page_html(page_name)
-    @content = ''
+    @current_page_html_content_str = ''
     case page_name
       when :login
         get_login_page_html
       when :predict
         get_make_predictions_page_html
       when :view_all
-        get_view_all_predictions_page_html
+        return
+        # get_view_all_predictions_page_html
     end
-    active_support_str(HtmlBeautifier.beautify(@content))
+    prepare_html_str(@current_page_html_content_str)
   end
 
   def get_form_input_html(text, input)
@@ -29,16 +34,19 @@ module TestTwoAppHelper
                           class: 'formInput')
   end
 
+  def get_page_frame_html
+    prepare_html_str(content_tag(:h1, @current_page_title, id: 'header'))
+  end
+
 
   # =====================================================================================
   # ==================================   LOGIN FORM   ===================================
   # =====================================================================================
 
   def get_login_page_html
-    @content << content_tag(:h1, 'Login', id: 'header')
-    @content << content_tag(:div,
-                  get_login_form_html,
-                  id: 'loginForm')
+    @current_page_html_content_str << content_tag(:div,
+                                                  get_login_form_html,
+                                                  id: 'loginForm')
   end
 
   def get_login_form_html
@@ -49,11 +57,11 @@ module TestTwoAppHelper
 
   def get_login_form_content_html
     content = content_tag(:div,
-                  get_form_input_html('Email', email_field(:user, :address)),
-                  class: 'formElement')
+                          get_form_input_html('Email', email_field(:user, :address)),
+                          class: 'formElement')
     content << content_tag(:div,
-                  get_form_input_html('Password', password_field_tag(:password)),
-                  class: 'formElement')
+                           get_form_input_html('Password', password_field_tag(:password)),
+                           class: 'formElement')
     content + content_tag(:div, submit_tag('Login'), class: 'submitDiv')
   end
 
@@ -63,8 +71,7 @@ module TestTwoAppHelper
   # =====================================================================================
 
   def get_make_predictions_page_html
-    @content << content_tag(:h1, 'Make Predictions', id: 'header')
-    @content << content_tag(:div,
+    @current_page_html_content_str << content_tag(:div,
                   get_make_predictions_form_html,
                   id: 'makePredictionsForm')
   end
@@ -100,9 +107,6 @@ module TestTwoAppHelper
   # =============================   VIEW PREDICTIONS FORM   =============================
   # =====================================================================================
 
-  def get_view_all_predictions_header_html
-    content_tag(:h1, 'View All Predictions', id: 'header')
-  end
 
 end
 

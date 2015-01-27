@@ -1,15 +1,19 @@
 class TestTwoAppController < ApplicationController
+
   def make_predictions
+    @current_page_title = 'Make Predictions'
     set_matches_data_hash
   end
 
   def view_all_predictions
+    @current_page_title = 'View All Predictions'
     set_matches_data_hash
     set_all_predictions_data_hash
     puts @predictions
   end
 
   def login
+    @current_page_title = 'Login'
   end
 
   private
