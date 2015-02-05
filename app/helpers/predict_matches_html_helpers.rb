@@ -20,13 +20,18 @@ module PredictMatchesHtmlHelpers
   def set_make_predictions_page_html_list_detail
     @html_list_detail = {
         predict_match_form_div: {
-            tag: :div
+            tag: :div,
+            id: 'predictMatchForm'
         },
         predict_match_form: {
-            tag: :form
+            tag: :form,
+            controller: 'test_two_app',
+            action: 'predict_match',
+            method: 'post'
         },
         predict_match_div: {
             tag: :div,
+            class: 'predictMatch',
             loop: {
                 each: @match
             }
@@ -38,7 +43,8 @@ module PredictMatchesHtmlHelpers
             tag: :input
         },
         predict_match_form_submit: {
-            tag: :submit
+            tag: :submit,
+            class: 'submitDiv'
         }
     }
   end
