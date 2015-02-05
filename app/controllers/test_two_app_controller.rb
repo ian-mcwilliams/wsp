@@ -1,4 +1,5 @@
 class TestTwoAppController < ApplicationController
+  helper LoginHtmlHelpers, PredictMatchesHtmlHelpers
 
   def make_predictions
     @current_page_title = 'Make Predictions'
@@ -29,7 +30,7 @@ class TestTwoAppController < ApplicationController
       @predictions = []
       get_all_users.each do |user|
         preds = []
-        10.times { preds << get_random_number(0, 4) }
+        20.times { preds << get_random_number(0, 4) }
         @predictions << { user: user, preds: preds }
       end
     end
