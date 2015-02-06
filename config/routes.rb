@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get 'view', to: 'test_two_app#view_all_predictions'
 
+  get 'login', to: 'test_two_app#login'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
