@@ -5,11 +5,25 @@ module HtmlProcessorHelpers
       @detail = @html_list_detail[key]
       @args = @detail[:args].merge(id: key.to_s)
       if @detail.has_key?(:each)
-        instance_variable_get("@#{@detail[:each]}").each { |key, value| write_html_tag(value) }
+        get_items.each do |item|
+          instance_variable_set("@#{@detail[:set]}", item) if @detail.has_key?(:set)
+          write_html_tag(value)
+        end
       else
         write_html_tag(value)
       end
     end
+  end
+
+  def get_items
+    items = nil; raw_data = instance_variable_get("@#{@detail[:each]}")
+    raise("@#{@detail[:each]} must contain a hash or array") unless raw_data.is_a?(Array) || raw_data.is_a?(Hash)
+    items = raw_data if raw_data.is_a?(Array)
+    if raw_data.is_a?(Hash)
+      items = []
+      raw_data.each { |key, value| items << value.merge(key: key) }
+    end
+    items
   end
 
   def write_html_tag(value)
