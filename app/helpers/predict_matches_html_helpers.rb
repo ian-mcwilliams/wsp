@@ -3,21 +3,33 @@ module PredictMatchesHtmlHelpers
   # =============================   PREDICT MATCHES FORM   ==============================
   # =====================================================================================
 
-  def set_make_predictions_page_html_list
+  def get_predict_match_page_html
+    set_predict_match_page_html_list
+    set_predict_match_page_html_list_detail
+    process_html_list(@html_list)
+  end
+
+  def set_predict_match_page_html_list
     @html_list = {
         predict_match_form_div: {
             predict_match_form: {
                 predict_match_div: {
-                    predict_match_text: {},
-                    predict_match_input: {}
+                    predict_match_team_div: {
+                        predict_match_team_text_div: {},
+                        predict_match_team_input_div: {
+                            predict_match_team_input: {}
+                        }
+                    }
                 },
-                predict_match_form_submit: {}
+                predict_match_form_submit_div: {
+                    predict_match_form_submit: {}
+                }
             }
         }
     }
   end
 
-  def set_make_predictions_page_html_list_detail
+  def set_predict_match_page_html_list_detail
     @html_list_detail = {
         predict_match_form_div: {
             tag: :div,
@@ -33,18 +45,37 @@ module PredictMatchesHtmlHelpers
             tag: :div,
             class: 'predictMatch',
             loop: {
-                each: @match
+                each: 'matches'
             }
         },
-        predict_match_text: {
-            tag: :text
+        predict_match_team_div: {
+            tag: :div,
+            class: 'predictTeam',
+            loop: {
+                each: 'teams'
+            }
         },
-        predict_match_input: {
-            tag: :input
+        predict_match_team_text_div: {
+            tag: :div,
+            class: 'formTextDiv',
+            text: 'team##name'
+        },
+        predict_match_team_input_div: {
+            tag: :div,
+            class: 'formInputDiv'
+        },
+        predict_match_team_input: {
+            tag: :input,
+            class: 'formInput',
+            name: 'team##key'
+        },
+        predict_match_form_submit_div: {
+            tag: :div,
+            class: 'formSubmitDiv'
         },
         predict_match_form_submit: {
             tag: :submit,
-            class: 'submitDiv'
+            class: 'formSubmit'
         }
     }
   end
