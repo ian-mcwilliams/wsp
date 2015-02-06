@@ -17,7 +17,7 @@ module TestTwoAppHelper
       when :login
         get_login_page_html
       when :predict
-        get_make_predictions_page_html
+        get_predict_match_page_html
       when :view_all
         return
         # get_view_all_predictions_page_html
