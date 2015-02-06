@@ -1,5 +1,5 @@
 class TestTwoAppController < ApplicationController
-  helper LoginHtmlHelpers, PredictMatchesHtmlHelpers
+  helper HtmlProcessorHelpers, LoginHtmlHelpers, PredictMatchesHtmlHelpers
 
   def make_predictions
     @current_page_title = 'Make Predictions'
@@ -44,100 +44,120 @@ class TestTwoAppController < ApplicationController
           {
               home_team: {
                   name: 'Man Utd',
+                  key:  :man_utd,
                   color:  'red',
               },
               away_team: {
                   name: 'Arsenal',
+                  key: :arsenal,
                   color:  'red',
               },
           },
           {
               home_team: {
                   name: 'Liverpool',
+                  key: :liverpool,
                   color:  'red',
               },
               away_team: {
                   name: 'Aston Villa',
+                  key: :aston_villa,
                   color:  'pink',
               },
           },
           {
               home_team:  {
                   name: 'Newcastle United',
+                  key: :newcastle_united,
                   color:  'white',
               },
               away_team: {
                   name: 'Stevenage Borough',
+                  key: :stevenage_borough,
                   color:  'white',
               },
           },
           {
               home_team:  {
                   name: 'Fulham',
+                  key: :fulham,
                   color:  'white',
               },
               away_team: {
                   name: 'Colchester',
+                  key: :colchester,
                   color:  'white',
               },
           },
           {
               home_team:  {
                   name: 'WBA',
+                  key: :wba,
                   color:  'white',
               },
               away_team: {
                   name: 'Dulwich Hamlet',
+                  key: :dulwich_hamlet,
                   color:  'white',
               },
           },
           {
               home_team:  {
                   name: 'Leamington Brakes',
+                  key: :leamington_brakes,
                   color:  'white',
               },
               away_team: {
                   name: 'Everton',
+                  key: :everton,
                   color:  'white',
               },
           },
           {
               home_team:  {
                   name: 'Southampton',
+                  key: :southampton,
                   color:  'white',
               },
               away_team: {
                   name: 'Plymouth Argyle',
+                  key: :plymoth_argyle,
                   color:  'white',
               },
           },
           {
               home_team:  {
                   name: 'Witton Albion',
+                  key: :witton_albion,
                   color:  'white',
               },
               away_team: {
                   name: 'Margate',
+                  key: :margate,
                   color:  'white',
               },
           },
           {
               home_team:  {
                   name: 'Derby County',
+                  key: :derby_county,
                   color:  'white',
               },
               away_team: {
                   name: 'Carlisle United',
+                  key: :carlisle_united,
                   color:  'white',
               },
           },
           {
               home_team:  {
                   name: 'West Ham United',
+                  key: :west_ham_united,
                   color:  'white',
               },
               away_team: {
                   name: 'Tottenham Hotspur',
+                  key: :tottenham_hotspur,
                   color:  'white',
               },
           },

@@ -33,49 +33,47 @@ module PredictMatchesHtmlHelpers
     @html_list_detail = {
         predict_match_form_div: {
             tag: :div,
-            id: 'predictMatchForm'
         },
         predict_match_form: {
             tag: :form,
-            controller: 'test_two_app',
-            action: 'predict_match',
-            method: 'post'
+            args: { controller: 'test_two_app', action: 'predict_match', method: 'post' }
         },
         predict_match_div: {
             tag: :div,
-            class: 'predictMatch',
+            args: { class: 'predictMatch' },
             loop: {
                 each: 'matches'
             }
         },
         predict_match_team_div: {
             tag: :div,
-            class: 'predictTeam',
+            args: { class: 'predictTeam' },
             loop: {
                 each: 'teams'
             }
         },
         predict_match_team_text_div: {
             tag: :div,
-            class: 'formTextDiv',
+            args: { class: 'formTextDiv' },
             text: 'team##name'
         },
         predict_match_team_input_div: {
             tag: :div,
-            class: 'formInputDiv'
+            args: { class: 'formInputDiv' }
         },
         predict_match_team_input: {
             tag: :input,
-            class: 'formInput',
+            args: { class: 'formInput' },
             name: 'team##key'
         },
         predict_match_form_submit_div: {
             tag: :div,
-            class: 'formSubmitDiv'
+            args: { class: 'formSubmitDiv' }
         },
         predict_match_form_submit: {
             tag: :submit,
-            class: 'formSubmit'
+            args: { class: 'formSubmit' },
+            value: 'Predict'
         }
     }
   end
@@ -104,10 +102,9 @@ module PredictMatchesHtmlHelpers
   def get_predict_match_html(match)
     content = active_support_str
     match.each do |_, value|
-      team_name = value[:name]
-      input_field = text_field_tag(value[:name].downcase.gsub(' ', '_').to_sym, nil, class: 'inputBox')
+      input_field = text_field_tag(value[:key], nil, class: 'inputBox')
       content << content_tag(:div,
-                             get_form_input_html(team_name, input_field),
+                             get_form_input_html(value[:name], input_field),
                              class: 'predictTeam')
     end
     content

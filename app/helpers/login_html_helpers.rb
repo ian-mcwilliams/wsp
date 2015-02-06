@@ -36,47 +36,45 @@ module LoginHtmlHelpers
         },
         login_form: {
             tag: :form,
-            controllor: 'test_two_app',
-            action: 'login',
-            method: 'post'
+            args: { controllor: 'test_two_app', action: 'login', method: 'post' },
         },
         login_email_div: {
             tag: :div,
         },
         login_email_text_div: {
             tag: :div,
-            class: 'formTextDiv'
+            args: { class: 'formTextDiv' }
         },
         login_email_input_div: {
             tag: :div,
-            class: 'formInputDiv'
+            args: { class: 'formInputDiv' }
         },
         login_email_input: {
             tag: :input,
-            class: 'formInputDiv'
+            args: { class: 'formInputDiv' }
         },
         login_password_div: {
             tag: :div,
         },
         login_password_text_div: {
             tag: :div,
-            class: 'formTextDiv'
+            args: { class: 'formTextDiv' }
         },
         login_password_input_div: {
             tag: :div,
-            class: 'formInputDiv'
+            args: { class: 'formInputDiv' }
         },
         login_password_input: {
             tag: :input,
-            class: 'formInput'
+            args: { class: 'formInput' }
         },
         login_password_submit_div: {
             tag: :div,
-            class: 'formSubmitDiv'
+            args: { class: 'formSubmitDiv' }
         },
         login_password_submit: {
             tag: :submit,
-            class: 'formSubmit'
+            args: { class: 'formSubmit' }
         }
     }
   end
@@ -101,7 +99,7 @@ module LoginHtmlHelpers
 
   def get_login_form_content_html
     content = content_tag(:div,
-                          get_form_input_html('Email', email_field(:user, :address)),
+                          get_form_input_html('Email', email_field(:user, :email)),
                           class: 'formElement')
     content << content_tag(:div,
                            get_form_input_html('Password', password_field_tag(:password)),
