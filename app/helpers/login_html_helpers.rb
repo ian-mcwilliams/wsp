@@ -4,25 +4,31 @@ module LoginHtmlHelpers
   # ==================================   LOGIN FORM   ===================================
   # =====================================================================================
 
+  def get_login_page_html
+    set_login_page_html_list
+    set_login_page_html_list_detail
+    @current_page_html_content_str = process_html_list(@html_list)
+  end
+
   def set_login_page_html_list
     @html_list = {
         login_form_div: {
             login_form: {
-                login_email_div: {
-                    login_email_text_div: {},
-                    login_email_input_div: {
-                        login_email_input: {}
-                    }
-                },
-                login_password_div: {
-                    login_password_text_div: {},
-                    login_password_input_div: {
-                        login_password_input: {}
-                    }
-                },
-                login_form_submit_div: {
-                    login_form_submit: {}
-                }
+                # login_email_div: {
+                #     login_email_text_div: {},
+                #     login_email_input_div: {
+                #         login_email_input: {}
+                #     }
+                # },
+                # login_password_div: {
+                #     login_password_text_div: {},
+                #     login_password_input_div: {
+                #         login_password_input: {}
+                #     }
+                # },
+                # login_form_submit_div: {
+                #     login_form_submit: {}
+                # }
             }
         }
     }
@@ -51,7 +57,7 @@ module LoginHtmlHelpers
         },
         login_email_input: {
             tag: :input,
-            args: { class: 'formInputDiv' }
+            args: { class: 'formInput' }
         },
         login_password_div: {
             tag: :div,
@@ -68,11 +74,11 @@ module LoginHtmlHelpers
             tag: :input,
             args: { class: 'formInput' }
         },
-        login_password_submit_div: {
+        login_form_submit_div: {
             tag: :div,
             args: { class: 'formSubmitDiv' }
         },
-        login_password_submit: {
+        login_form_submit: {
             tag: :submit,
             args: { class: 'formSubmit' }
         }
@@ -85,7 +91,7 @@ module LoginHtmlHelpers
 
 
 
-  def get_login_page_html
+  def get_login_page_htmlx
     @current_page_html_content_str << content_tag(:div,
                                                   get_login_form_html,
                                                   id: 'loginForm')

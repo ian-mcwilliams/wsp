@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get 'test_two_app/login'
 
+  get 'sandbox', to: 'test_two_app#sandbox'
+
   get 'predict', to: 'test_two_app#make_predictions'
 
   get 'view', to: 'test_two_app#view_all_predictions'

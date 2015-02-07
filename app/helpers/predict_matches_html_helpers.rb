@@ -6,7 +6,7 @@ module PredictMatchesHtmlHelpers
   def get_predict_match_page_html
     set_predict_match_page_html_list
     set_predict_match_page_html_list_detail
-    process_html_list(@html_list)
+    @current_page_html_content_str = process_html_list(@html_list)
   end
 
   def set_predict_match_page_html_list
@@ -42,16 +42,16 @@ module PredictMatchesHtmlHelpers
             tag: :div,
             args: { class: 'predictMatch' },
             loop: {
-                each: 'matches',
-                set: 'match'
+                each: '@matches',
+                set: '@match'
             }
         },
         predict_match_team_div: {
             tag: :div,
             args: { class: 'predictTeam' },
             loop: {
-                each: 'match',
-                set: 'team'
+                each: '@match',
+                set: '@team'
             }
         },
         predict_match_team_text_div: {
@@ -83,8 +83,8 @@ module PredictMatchesHtmlHelpers
 
   def get_make_predictions_page_html
     @current_page_html_content_str << content_tag(:div,
-                                                  get_make_predictions_form_html,
-                                                  id: 'makePredictionsForm')
+                              get_make_predictions_form_html,
+                              id: 'makePredictionsForm')
   end
 
   def get_make_predictions_form_html

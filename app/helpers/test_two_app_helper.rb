@@ -8,12 +8,15 @@ module TestTwoAppHelper
   end
 
   def prepare_html_str(str)
+    puts "STRING: #{str}"
     active_support_str(HtmlBeautifier.beautify(str))
   end
 
   def get_page_html(page_name)
     @current_page_html_content_str = ''
     case page_name
+      when :sandbox
+        get_sandbox_output
       when :login
         get_login_page_html
       when :predict

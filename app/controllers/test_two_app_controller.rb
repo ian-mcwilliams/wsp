@@ -1,5 +1,9 @@
 class TestTwoAppController < ApplicationController
-  helper HtmlProcessorHelpers, LoginHtmlHelpers, PredictMatchesHtmlHelpers
+  helper Sandbox, HtmlProcessorHelpers, LoginHtmlHelpers, PredictMatchesHtmlHelpers
+
+  def sandbox
+
+  end
 
   def make_predictions
     @current_page_title = 'Make Predictions'
