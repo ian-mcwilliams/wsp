@@ -12,6 +12,16 @@ module TestTwoAppHelper
     active_support_str(HtmlBeautifier.beautify(str))
   end
 
+  def snake_to_camel(str)
+    camel = ''
+    split_str = str.split('_')
+    split_str.each_with_index do |current_str, index|
+      index > 0 ? camel_str = current_str.titleize : camel_str = current_str
+      camel << camel_str
+    end
+    camel
+  end
+
   def get_page_html(page_name)
     @current_page_html_content_str = ''
     case page_name

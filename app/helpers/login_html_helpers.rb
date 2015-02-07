@@ -14,21 +14,21 @@ module LoginHtmlHelpers
     @html_list = {
         login_form_div: {
             login_form: {
-                # login_email_div: {
-                #     login_email_text_div: {},
-                #     login_email_input_div: {
-                #         login_email_input: {}
-                #     }
-                # },
-                # login_password_div: {
-                #     login_password_text_div: {},
-                #     login_password_input_div: {
-                #         login_password_input: {}
-                #     }
-                # },
-                # login_form_submit_div: {
-                #     login_form_submit: {}
-                # }
+                login_email_div: {
+                    login_email_text_div: {},
+                    login_email_input_div: {
+                        login_email_input: {}
+                    }
+                },
+                login_password_div: {
+                    login_password_text_div: {},
+                    login_password_input_div: {
+                        login_password_input: {}
+                    }
+                },
+                login_form_submit_div: {
+                    login_form_submit: {}
+                }
             }
         }
     }
@@ -49,7 +49,7 @@ module LoginHtmlHelpers
         },
         login_email_text_div: {
             tag: :div,
-            args: { class: 'formTextDiv' }
+            args: { class: 'formTextDiv', text: 'Email:' }
         },
         login_email_input_div: {
             tag: :div,
@@ -64,7 +64,7 @@ module LoginHtmlHelpers
         },
         login_password_text_div: {
             tag: :div,
-            args: { class: 'formTextDiv' }
+            args: { class: 'formTextDiv', text: 'Password:' }
         },
         login_password_input_div: {
             tag: :div,

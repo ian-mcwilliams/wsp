@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get 'sandbox', to: 'test_two_app#sandbox'
 
-  get 'predict', to: 'test_two_app#make_predictions'
+  get 'predict', to: 'test_two_app#predict_matches'
 
   get 'view', to: 'test_two_app#view_all_predictions'
 

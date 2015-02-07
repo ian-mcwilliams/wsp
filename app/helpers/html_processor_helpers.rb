@@ -2,50 +2,39 @@ module HtmlProcessorHelpers
 
   def process_html_list(html_list)
     verify_page_html_list_against_detail(html_list)
+    execute_html_processing(html_list)
+  end
+
+  def execute_html_processing(html_list)
+    current_str = active_support_str
     html_list.each do |key, value|
       @detail = @html_list_detail[key]
-      puts '*********************'
-      puts "key = #{key}"
-      puts '*********************'
-      pp @args
-      puts '---'
-      pp @detail
-      @detail.has_key?(:args) ? @args = @detail[:args].merge(id: value.to_s) : @args = {id: value.to_s}
-      current_str = get_current_html_content_str(value) unless value.empty?
-      @args[:content] = current_str if current_str
-      current_str = write_html_tag
-      puts ">>>>>>>> pre-concat current_str = #{current_str}"
-      add_to_full_str(current_str)
-    end
-    @full_str
-  end
-
-  def add_to_full_str(current_str)
-    @full_str ||= active_support_str
-    # puts '************************************************************************************************'
-    # puts '************************************************************************************************'
-    # puts "current_full_str = #{@full_str}"
-    # puts '&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&'
-    # puts '&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&'
-    @full_str << current_str
-    # puts '************************************************************************************************'
-    # puts '************************************************************************************************'
-    # puts "new_full_str = #{@full_str}"
-    # puts '&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&'
-    # puts '&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&'
-  end
-
-  def get_current_html_content_str(current_list)
-    current_html_content_str = active_support_str
-    if @detail.has_key?(:each)
-      get_items.each do |item|
-        instance_variable_set(@detail[:set], item) if @detail.has_key?(:set)
-        current_html_content_str << process_html_list(current_list)
+      puts "*********************>>> key = #{key}"
+      if @detail.has_key?(:loop)
+        puts 'HAS LOOP!'
+        collection = get_items
+        collection[:items].each do |item|
+          instance_variable_set(collection[:subset], item) if collection.has_key?(:subset)
+          current_str << build_html_str(key, value)
+        end
+      else
+        current_str << build_html_str(key, value)
       end
-    else
-      current_html_content_str << process_html_list(current_list)
     end
-    current_html_content_str
+    current_str
+  end
+
+  def build_html_str(key, value)
+    @args = nil
+    id_hash = { id: snake_to_camel(key.to_s) }
+    @detail.has_key?(:args) ? @args = @detail[:args].merge(id_hash) : @args = id_hash
+    args, detail = {}, {}
+    args.merge!(@args); detail.merge!(@detail)
+    current_str = nil
+    current_str = execute_html_processing(value) unless value.empty?
+    @args = args; @detail = detail
+    @args[:content] = current_str if current_str
+    write_html_tag
   end
 
   def verify_page_html_list_against_detail(html_list)
@@ -66,10 +55,16 @@ module HtmlProcessorHelpers
   end
 
   def get_items
-    raw_data = instance_variable_get("@#{@detail[:each]}")
+    puts "@detail[:loop][:each] = #{@detail[:loop][:each]}"
+    raw_data = @detail[:loop][:each]
+    puts "raw_data = #{raw_data}"
+    raw_data.index('=>') ? raw_data_arr = raw_data.split('=>') : raw_data_arr = [raw_data]
+    collection = instance_variable_get(raw_data_arr[0])
     items = []
-    items.concat(raw_data) if raw_data.is_a?(Array)
-    raw_data.each { |key, value| items << value.merge(key: key) } if raw_data.is_a?(Hash)
+    items.concat(collection) if collection.is_a?(Array)
+    collection.each { |key, value| items << value.merge(key: key) } if collection.is_a?(Hash)
+    items = { items: items }
+    items[:subset] = raw_data_arr[1] if raw_data_arr.count > 0
     items
   end
 
@@ -79,12 +74,13 @@ module HtmlProcessorHelpers
 
   def create_div(args)
     content = args.delete(:content)
+    content ||= args.delete(:text)
     content_tag(:div, content, args)
   end
 
   def create_form(args)
     content = args.delete(:content)
-    html_id = args.delete(:id)
+    html_id = { id: args.delete(:id) }
     form_tag(args, html_id) { content }
   end
 

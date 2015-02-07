@@ -36,22 +36,20 @@ module PredictMatchesHtmlHelpers
         },
         predict_match_form: {
             tag: :form,
-            args: { controller: 'test_two_app', action: 'predict_match', method: 'post' }
+            args: { controller: 'test_two_app', action: 'predict_matches', method: 'post' }
         },
         predict_match_div: {
             tag: :div,
-            args: { class: 'predictMatch' },
+            args: { class: 'predictMatchDiv' },
             loop: {
-                each: '@matches',
-                set: '@match'
+                each: '@matches=>@teams'
             }
         },
         predict_match_team_div: {
             tag: :div,
-            args: { class: 'predictTeam' },
+            args: { class: 'predictTeamDiv' },
             loop: {
-                each: '@match',
-                set: '@team'
+                each: '@teams=>@team'
             }
         },
         predict_match_team_text_div: {
