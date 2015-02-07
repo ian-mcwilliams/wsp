@@ -16,20 +16,15 @@ module HtmlProcessorHelpers
   end
 
   def get_items
-    items = nil; raw_data = instance_variable_get("@#{@detail[:each]}")
-    raise("@#{@detail[:each]} must contain a hash or array") unless raw_data.is_a?(Array) || raw_data.is_a?(Hash)
-    items = raw_data if raw_data.is_a?(Array)
-    if raw_data.is_a?(Hash)
-      items = []
-      raw_data.each { |key, value| items << value.merge(key: key) }
-    end
+    raw_data = instance_variable_get("@#{@detail[:each]}")
+    items = []
+    items.concat(raw_data) if raw_data.is_a?(Array)
+    raw_data.each { |key, value| items << value.merge(key: key) } if raw_data.is_a?(Hash)
     items
   end
 
   def write_html_tag(value)
-    unless value.empty?
-      process_html_list(value)
-    end
+    process_html_list(value) unless value.empty?
     send("create_#{@detail[:tag].to_s}")
   end
 
