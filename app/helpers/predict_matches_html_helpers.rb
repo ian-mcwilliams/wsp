@@ -55,7 +55,7 @@ module PredictMatchesHtmlHelpers
         predict_match_team_text_div: {
             tag: :div,
             args: { class: 'formTextDiv' },
-            text: 'team##name'
+            text: '@team##name'
         },
         predict_match_team_input_div: {
             tag: :div,
@@ -64,7 +64,7 @@ module PredictMatchesHtmlHelpers
         predict_match_team_input: {
             tag: :input,
             args: { class: 'formInput' },
-            name: 'team##key'
+            name: '@team##key'
         },
         predict_match_form_submit_div: {
             tag: :div,
