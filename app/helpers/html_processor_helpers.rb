@@ -15,6 +15,7 @@ module HtmlProcessorHelpers
         collection = get_items
         collection[:items].each do |item|
           instance_variable_set(collection[:subset], item) if collection.has_key?(:subset)
+          pp instance_variable_get(collection[:subset])
           current_str << build_html_str(key, value)
         end
       else
@@ -28,6 +29,7 @@ module HtmlProcessorHelpers
     @args = nil
     id_hash = { id: snake_to_camel(key.to_s) }
     @detail.has_key?(:args) ? @args = @detail[:args].merge(id_hash) : @args = id_hash
+    @args[:text] = @detail[:text] if @detail.has_key?(:text)
     args, detail = {}, {}
     args.merge!(@args); detail.merge!(@detail)
     current_str = nil
