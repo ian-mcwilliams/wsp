@@ -42,14 +42,16 @@ module PredictMatchesHtmlHelpers
             tag: :div,
             args: { class: 'predictMatch' },
             loop: {
-                each: 'matches'
+                each: 'matches',
+                set: 'match'
             }
         },
         predict_match_team_div: {
             tag: :div,
             args: { class: 'predictTeam' },
             loop: {
-                each: 'teams'
+                each: 'match',
+                set: 'team'
             }
         },
         predict_match_team_text_div: {

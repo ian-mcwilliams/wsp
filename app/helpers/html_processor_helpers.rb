@@ -5,17 +5,26 @@ module HtmlProcessorHelpers
       @detail = @html_list_detail[key]
       @args = @detail[:args].merge(id: key.to_s)
       if @detail.has_key?(:each)
-        instance_variable_get("@#{@detail[:each]}").each { |key, value| write_html_tag(value) }
+        get_items.each do |item|
+          instance_variable_set("@#{@detail[:set]}", item) if @detail.has_key?(:set)
+          write_html_tag(value)
+        end
       else
         write_html_tag(value)
       end
     end
   end
 
+  def get_items
+    raw_data = instance_variable_get("@#{@detail[:each]}")
+    items = []
+    items.concat(raw_data) if raw_data.is_a?(Array)
+    raw_data.each { |key, value| items << value.merge(key: key) } if raw_data.is_a?(Hash)
+    items
+  end
+
   def write_html_tag(value)
-    unless value.empty?
-      process_html_list(value)
-    end
+    process_html_list(value) unless value.empty?
     send("create_#{@detail[:tag].to_s}")
   end
 
