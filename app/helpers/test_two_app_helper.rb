@@ -8,19 +8,31 @@ module TestTwoAppHelper
   end
 
   def prepare_html_str(str)
+    puts "STRING: #{str}"
     active_support_str(HtmlBeautifier.beautify(str))
+  end
+
+  def snake_to_camel(str)
+    camel = ''
+    split_str = str.split('_')
+    split_str.each_with_index do |current_str, index|
+      index > 0 ? camel_str = current_str.titleize : camel_str = current_str
+      camel << camel_str
+    end
+    camel
   end
 
   def get_page_html(page_name)
     @current_page_html_content_str = ''
     case page_name
+      when :sandbox
+        get_sandbox_output
       when :login
         get_login_page_html
       when :predict
-        get_make_predictions_page_html
+        get_predict_match_page_html
       when :view_all
-        return
-        # get_view_all_predictions_page_html
+        get_view_all_predictions_page_html
     end
     prepare_html_str(@current_page_html_content_str)
   end
