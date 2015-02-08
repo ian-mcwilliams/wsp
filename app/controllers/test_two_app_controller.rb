@@ -1,5 +1,5 @@
 class TestTwoAppController < ApplicationController
-  helper HtmlProcessorHelpers, LoginHtmlHelpers, PredictMatchesHtmlHelpers
+  helper HtmlProcessorHelpers, LoginHtmlHelpers, PredictMatchesHtmlHelpers, ViewAllPredictionsHtmlHelpers
 
   def sandbox
 
@@ -7,14 +7,12 @@ class TestTwoAppController < ApplicationController
 
   def predict_matches
     @current_page_title = 'Make Predictions'
-    set_matches_data_hash
+    @matches = get_predict_matches_data_hash
   end
 
   def view_all_predictions
     @current_page_title = 'View All Predictions'
-    set_matches_data_hash
-    set_all_predictions_data_hash
-    puts @predictions
+    @view_all_predictions = get_view_all_predictions_data_hash
   end
 
   def login
@@ -30,21 +28,44 @@ class TestTwoAppController < ApplicationController
       num_generator.rand(min..max)
     end
 
-    def set_all_predictions_data_hash
-      @predictions = []
+    def get_all_predictions_data_hash
+      predictions = []
       get_all_users.each do |user|
         preds = []
         20.times { preds << get_random_number(0, 4) }
-        @predictions << { user: user, preds: preds }
+        predictions << { user: user, preds: preds }
       end
+      predictions
     end
 
     def get_all_users
       %w[Ian Davy Ryan Adeeb Juan Mickey Manni Mark Ade Omar]
     end
 
-    def set_matches_data_hash
-      @matches = [
+    def get_view_all_predictions_data_hash
+      collection = { users: get_all_users}
+      raw_matches = get_predict_matches_data_hash
+      raw_predictions = get_all_predictions_data_hash
+      matches = []
+      raw_matches.each_with_index do |match, index|
+        predictions = []
+        raw_predictions.each do |prediction|
+          home_score = prediction[:preds][index * 2]
+          away_score = prediction[:preds][index * 2 + 1]
+          predictions << { home_score: home_score, away_score: away_score }
+        end
+        matches << {
+            home_team: match[:home_team][:name],
+            away_team: match[:away_team][:name],
+            predictions: predictions
+        }
+      end
+      collection[:matches] = matches
+      collection
+    end
+
+    def get_predict_matches_data_hash
+      [
           {
               home_team: {
                   name: 'Man Utd',

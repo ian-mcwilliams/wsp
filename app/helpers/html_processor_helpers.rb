@@ -1,8 +1,15 @@
 module HtmlProcessorHelpers
 
   def process_html_list(html_list)
+    puts '============================================================================================='
+    puts '============================================================================================='
+    puts '============================================================================================='
     verify_page_html_list_against_detail(html_list)
-    execute_html_processing(html_list)
+    output = execute_html_processing(html_list)
+    puts '============================================================================================='
+    puts '============================================================================================='
+    puts '============================================================================================='
+    output
   end
 
   def execute_html_processing(html_list)
@@ -13,7 +20,6 @@ module HtmlProcessorHelpers
         collection = get_items
         collection[:items].each do |item|
           instance_variable_set(collection[:subset], item) if collection.has_key?(:subset)
-          pp instance_variable_get(collection[:subset])
           current_str << build_html_str(key, value)
         end
       else
@@ -42,7 +48,9 @@ module HtmlProcessorHelpers
     if text
       if text.index('@') == 0
         split_text = text.split('##')
-        @args[:text] = instance_variable_get(split_text[0])[split_text[1].to_sym]
+        text = instance_variable_get(split_text[0])
+        text = text[split_text[1].to_sym] if split_text.count > 1
+        @args[:text] = text
       else
         @args[:text] = text
       end
@@ -69,12 +77,17 @@ module HtmlProcessorHelpers
   def get_items
     raw_data = @detail[:loop][:each]
     raw_data.index('=>') ? raw_data_arr = raw_data.split('=>') : raw_data_arr = [raw_data]
-    collection = instance_variable_get(raw_data_arr[0])
+    if raw_data_arr[0].index('##')
+      iterator = raw_data_arr[0].split('##')
+      collection = instance_variable_get(iterator[0])[iterator[1].to_sym]
+    else
+      collection = instance_variable_get(raw_data_arr[0])
+    end
     items = []
     items.concat(collection) if collection.is_a?(Array)
     collection.each { |key, value| items << value.merge(key: key) } if collection.is_a?(Hash)
     items = { items: items }
-    items[:subset] = raw_data_arr[1] if raw_data_arr.count > 0
+    items[:subset] = raw_data_arr[1] if raw_data_arr.count > 1
     items
   end
 

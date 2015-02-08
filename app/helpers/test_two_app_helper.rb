@@ -32,8 +32,7 @@ module TestTwoAppHelper
       when :predict
         get_predict_match_page_html
       when :view_all
-        return
-        # get_view_all_predictions_page_html
+        get_view_all_predictions_page_html
     end
     prepare_html_str(@current_page_html_content_str)
   end
