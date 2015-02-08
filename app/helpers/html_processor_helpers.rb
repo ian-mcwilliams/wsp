@@ -9,9 +9,7 @@ module HtmlProcessorHelpers
     current_str = active_support_str
     html_list.each do |key, value|
       @detail = @html_list_detail[key]
-      puts "*********************>>> key = #{key}"
       if @detail.has_key?(:loop)
-        puts 'HAS LOOP!'
         collection = get_items
         collection[:items].each do |item|
           instance_variable_set(collection[:subset], item) if collection.has_key?(:subset)
@@ -29,7 +27,7 @@ module HtmlProcessorHelpers
     @args = nil
     id_hash = { id: snake_to_camel(key.to_s) }
     @detail.has_key?(:args) ? @args = @detail[:args].merge(id_hash) : @args = id_hash
-    @args[:text] = @detail[:text] if @detail.has_key?(:text)
+    process_text
     args, detail = {}, {}
     args.merge!(@args); detail.merge!(@detail)
     current_str = nil
@@ -37,6 +35,18 @@ module HtmlProcessorHelpers
     @args = args; @detail = detail
     @args[:content] = current_str if current_str
     write_html_tag
+  end
+
+  def process_text
+    @detail.has_key?(:text) ? text = @detail[:text] : text = nil
+    if text
+      if text.index('@') == 0
+        split_text = text.split('##')
+        @args[:text] = instance_variable_get(split_text[0])[split_text[1].to_sym]
+      else
+        @args[:text] = text
+      end
+    end
   end
 
   def verify_page_html_list_against_detail(html_list)
@@ -57,9 +67,7 @@ module HtmlProcessorHelpers
   end
 
   def get_items
-    puts "@detail[:loop][:each] = #{@detail[:loop][:each]}"
     raw_data = @detail[:loop][:each]
-    puts "raw_data = #{raw_data}"
     raw_data.index('=>') ? raw_data_arr = raw_data.split('=>') : raw_data_arr = [raw_data]
     collection = instance_variable_get(raw_data_arr[0])
     items = []
