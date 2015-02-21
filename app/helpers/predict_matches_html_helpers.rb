@@ -1,4 +1,5 @@
 module PredictMatchesHtmlHelpers
+
   # =====================================================================================
   # =============================   PREDICT MATCHES FORM   ==============================
   # =====================================================================================
@@ -33,6 +34,7 @@ module PredictMatchesHtmlHelpers
     @html_list_detail = {
         predict_match_form_div: {
             tag: :div,
+            args: { class: 'container' }
         },
         predict_match_form: {
             tag: :form,
@@ -40,39 +42,39 @@ module PredictMatchesHtmlHelpers
         },
         predict_match_div: {
             tag: :div,
-            args: { class: 'predictMatchDiv' },
+            args: { class: 'row col-xs-4 col-xs-offset-4 testDiv3' },
             loop: {
                 each: '@matches=>@teams'
             }
         },
         predict_match_team_div: {
             tag: :div,
-            args: { class: 'predictTeamDiv' },
+            args: { class: 'row testDiv1' },
             loop: {
                 each: '@teams=>@team'
             }
         },
         predict_match_team_text_div: {
             tag: :div,
-            args: { class: 'formTextDiv' },
+            args: { class: 'col-xs-6 testDiv4' },
             text: '@team##name'
         },
         predict_match_team_input_div: {
             tag: :div,
-            args: { class: 'formInputDiv' }
+            args: { class: 'col-xs-6' }
         },
         predict_match_team_input: {
             tag: :input,
-            args: { class: 'formInput' },
+            args: { class: 'testDiv2' },
             name: '@team##key'
         },
         predict_match_form_submit_div: {
             tag: :div,
-            args: { class: 'formSubmitDiv' }
+            args: { class: 'row' }
         },
         predict_match_form_submit: {
             tag: :submit,
-            args: { class: 'formSubmit' },
+            args: { class: 'btn-default' },
             value: 'Predict'
         }
     }
@@ -109,4 +111,5 @@ module PredictMatchesHtmlHelpers
     end
     content
   end
+
 end
