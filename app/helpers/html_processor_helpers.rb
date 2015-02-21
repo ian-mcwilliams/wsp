@@ -67,7 +67,7 @@ module HtmlProcessorHelpers
   end
 
   def flatten_hash(hash)
-    @keys ||= []
+    @keys = []
     hash.each do |key, value|
       @keys << key
       flatten_hash(value) unless value.empty?
