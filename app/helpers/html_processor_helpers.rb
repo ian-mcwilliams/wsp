@@ -5,6 +5,7 @@ module HtmlProcessorHelpers
     puts '============================================================================================='
     puts '============================================================================================='
     verify_page_html_list_against_detail(html_list)
+    @iterate = false
     output = execute_html_processing(html_list)
     puts '============================================================================================='
     puts '============================================================================================='
@@ -12,32 +13,39 @@ module HtmlProcessorHelpers
     output
   end
 
-  def execute_html_processing(html_list)
+  def execute_html_processing(html_list, loop_id=nil)
     current_str = active_support_str
     html_list.each do |key, value|
+      loop_id ? id = "#{loop_id}#{snake_to_camel(key.to_s, true)}" : id = snake_to_camel(key.to_s)
       @detail = @html_list_detail[key]
       if @detail.has_key?(:loop)
+        @iterate ? top_level_iterator = false : top_level_iterator = true
+        @iterate = true if top_level_iterator
         collection = get_items
-        collection[:items].each do |item|
+        collection[:items].each_with_index do |item, index|
+          current_id = "#{id}#{index}"
           instance_variable_set(collection[:subset], item) if collection.has_key?(:subset)
-          current_str << build_html_str(key, value)
+          current_str << build_html_str(current_id, value)
         end
+        @iterate = false if top_level_iterator
       else
-        current_str << build_html_str(key, value)
+        current_str << build_html_str(id, value)
       end
     end
     current_str
   end
 
-  def build_html_str(key, value)
+  def build_html_str(id, value)
     @args = nil
-    id_hash = { id: snake_to_camel(key.to_s) }
+    id_hash = { id: id }
     @detail.has_key?(:args) ? @args = @detail[:args].merge(id_hash) : @args = id_hash
     process_text
     args, detail = {}, {}
     args.merge!(@args); detail.merge!(@detail)
     current_str = nil
-    current_str = execute_html_processing(value) unless value.empty?
+    unless value.empty?
+      @iterate ? current_str = execute_html_processing(value, id) : current_str = execute_html_processing(value)
+    end
     @args = args; @detail = detail
     @args[:content] = current_str if current_str
     write_html_tag
