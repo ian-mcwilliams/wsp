@@ -12,6 +12,7 @@ module PredictMatchesHtmlHelpers
 
   def set_predict_match_page_html_list
     @html_list = {
+        left_margin_div: {},
         predict_match_form_div: {
             predict_match_form: {
                 predict_match_div: {
@@ -26,15 +27,20 @@ module PredictMatchesHtmlHelpers
                     predict_match_form_submit: {}
                 }
             }
-        }
+        },
+        right_margin_div: {}
     }
   end
 
   def set_predict_match_page_html_list_detail
     @html_list_detail = {
+        left_margin_div: {
+            tag: :div,
+            args: { class: 'col-sm-4 col-xs-12'}
+        },
         predict_match_form_div: {
             tag: :div,
-            args: { class: 'container' }
+            args: { class: 'col-sm-4 col-xs-12' }
         },
         predict_match_form: {
             tag: :form,
@@ -42,7 +48,7 @@ module PredictMatchesHtmlHelpers
         },
         predict_match_div: {
             tag: :div,
-            args: { class: 'row col-xs-4 col-xs-offset-4 testDiv3' },
+            args: { class: 'row col-xs-12 testDiv3' },
             loop: {
                 each: '@matches=>@teams'
             }
@@ -65,7 +71,7 @@ module PredictMatchesHtmlHelpers
         },
         predict_match_team_input: {
             tag: :input,
-            args: { class: 'testDiv2' },
+            args: { class: 'testDiv2', style: 'width:32px' },
             name: '@team##key'
         },
         predict_match_form_submit_div: {
@@ -74,8 +80,12 @@ module PredictMatchesHtmlHelpers
         },
         predict_match_form_submit: {
             tag: :submit,
-            args: { class: 'btn-default' },
+            args: { class: 'btn-primary btn-lg' },
             value: 'Predict'
+        },
+        right_margin_div: {
+            tag: :div,
+            args: { class: 'col-sm-4 col-xs-12' }
         }
     }
   end
