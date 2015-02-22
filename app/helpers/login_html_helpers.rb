@@ -12,6 +12,7 @@ module LoginHtmlHelpers
 
   def set_login_page_html_list
     @html_list = {
+        left_margin_div: {},
         login_form_div: {
             login_form: {
                 login_email_div: {
@@ -30,15 +31,21 @@ module LoginHtmlHelpers
                     login_form_submit: {}
                 }
             }
-        }
+        },
+        right_margin_div: {}
     }
   end
 
 
   def set_login_page_html_list_detail
     @html_list_detail = {
+        left_margin_div: {
+            tag: :div,
+            args: { class: 'col-xs-4'}
+        },
         login_form_div: {
             tag: :div,
+            args: { class: 'col-xs-4' }
         },
         login_form: {
             tag: :form,
@@ -46,41 +53,50 @@ module LoginHtmlHelpers
         },
         login_email_div: {
             tag: :div,
+            args: { class: 'row' }
         },
         login_email_text_div: {
             tag: :div,
-            args: { class: 'formTextDiv', text: 'Email:' }
+            args: { class: 'col-xs-6', text: 'Email:' }
         },
         login_email_input_div: {
             tag: :div,
-            args: { class: 'formInputDiv' }
+            args: { class: 'col-xs-6' }
         },
         login_email_input: {
             tag: :input,
-            args: { class: 'formInput' }
+            args: { class: '' }
         },
         login_password_div: {
             tag: :div,
+            args: { class: 'row' }
         },
         login_password_text_div: {
             tag: :div,
-            args: { class: 'formTextDiv', text: 'Password:' }
+            args: { class: 'col-xs-6' },
+            text: 'Password:'
+
         },
         login_password_input_div: {
             tag: :div,
-            args: { class: 'formInputDiv' }
+            args: { class: 'col-xs-6' }
         },
         login_password_input: {
             tag: :input,
-            args: { class: 'formInput' }
+            args: { class: '' }
         },
         login_form_submit_div: {
             tag: :div,
-            args: { class: 'formSubmitDiv' }
+            args: { class: 'row' }
         },
         login_form_submit: {
             tag: :submit,
-            args: { class: 'formSubmit' }
+            args: { class: 'btn-primary btn-lg' },
+            text: 'Login'
+        },
+        right_margin_div: {
+            tag: :div,
+            args: { class: 'col-xs-4' }
         }
     }
   end

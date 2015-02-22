@@ -1,5 +1,6 @@
 class TestTwoAppController < ApplicationController
-  helper HtmlProcessorHelpers, LoginHtmlHelpers, PredictMatchesHtmlHelpers, ViewAllPredictionsHtmlHelpers
+  helper HtmlProcessorHelpers, LoginHtmlHelpers, PredictMatchesHtmlHelpers, ViewAllPredictionsHtmlHelpers,
+         PageFrameHelpers
 
   def sandbox
 
@@ -13,6 +14,7 @@ class TestTwoAppController < ApplicationController
   def view_all_predictions
     @current_page_title = 'View All Predictions'
     @view_all_predictions = get_view_all_predictions_data_hash
+    pp @view_all_predictions
   end
 
   def login
@@ -39,7 +41,7 @@ class TestTwoAppController < ApplicationController
     end
 
     def get_all_users
-      %w[Ian Davy Ryan Adeeb Juan Mickey Manni Mark Ade Omar]
+      %w[Ian Davy]# Ryan Adeeb Juan Mickey Manni Mark Ade Omar]
     end
 
     def get_view_all_predictions_data_hash
