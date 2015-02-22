@@ -11,9 +11,10 @@ module ViewAllPredictionsHtmlHelpers
 
   def set_view_all_predictions_page_html_list
     @html_list = {
+        left_margin_div: {},
         view_all_predictions_div: {
             header_row_div: {
-                all_predictions_div: {},
+                team_header_div: {},
                 user_div: {},
             },
             predictions_row_div: {
@@ -25,71 +26,80 @@ module ViewAllPredictionsHtmlHelpers
                     home_prediction_div: {},
                     away_prediction_div: {}
                 }
-            }
+            },
+        right_margin_div: {}
         }
     }
   end
 
   def set_view_all_predictions_page_html_list_detail
     @html_list_detail = {
+        left_margin_div: {
+            tag: :div,
+            args: { class: 'col-sm-4 col-xs-12'}
+        },
         view_all_predictions_div: {
             tag: :div,
-            args: { class: 'viewAllPredictionsDiv' }
+            args: { class: 'row col-sm-4 col-xs-12' }
         },
         header_row_div: {
             tag: :div,
-            args: { class: 'headerRowDiv' }
+            args: { class: 'row' }
         },
-        all_predictions_div: {
+        team_header_div: {
             tag: :div,
-            args: { class: 'allPredictionsDiv' },
-            text: 'All Predictions'
+            args: { class: 'col-xs-6' },
+            text: 'Team'
         },
         user_div: {
             tag: :div,
             text: '@user',
-            args: { class: 'userDiv' },
+            args: { class: 'col-xs-3' },
             loop: {
                 each: '@view_all_predictions##users=>@user'
             }
         },
         predictions_row_div: {
             tag: :div,
-            args: { class: 'predictionsRowDiv' },
+            args: { class: 'row' },
             loop: {
                 each: '@view_all_predictions##matches=>@match'
             }
         },
         team_names_div: {
             tag: :div,
-            args: { class: 'teamNamesDiv' },
+            args: { class: 'col-xs-6' },
         },
         home_team_div: {
             tag: :div,
-            args: { class: 'homeTeamDiv' },
+            args: { class: 'row col-xs-12' },
             text: '@match##home_team'
         },
         away_team_div: {
             tag: :div,
-            args: { class: 'awayTeamDiv' },
+            args: { class: 'row col-xs-12' },
             text: '@match##away_team'
         },
         predictions_div: {
             tag: :div,
-            args: { class: 'predictionsDiv' },
+            args: { class: 'col-xs-3' },
             loop: {
                 each: '@match##predictions=>@prediction'
-            }
+             }
         },
         home_prediction_div: {
             tag: :div,
-            args: { class: 'homePredictionDiv' },
+            args: { class: 'row col-xs-12' },
             text: '@prediction##home_score'
         },
         away_prediction_div: {
             tag: :div,
-            args: { class: 'awayPredictionDiv' },
+            args: { class: 'row col-xs-12' },
             text: '@prediction##away_score'
+        },
+        right_margin_div: {
+            tag: :div,
+            args: { class: 'col-sm-4 col-xs-12' }
         }
     }
   end
