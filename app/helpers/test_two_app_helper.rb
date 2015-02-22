@@ -8,7 +8,6 @@ module TestTwoAppHelper
   end
 
   def prepare_html_str(str)
-    puts "STRING: #{str}"
     active_support_str(HtmlBeautifier.beautify(str))
   end
 
@@ -49,12 +48,6 @@ module TestTwoAppHelper
   def get_page_frame_html
     prepare_html_str(content_tag(:h1, @current_page_title, id: 'header'))
   end
-
-
-  # =====================================================================================
-  # =============================   VIEW PREDICTIONS FORM   =============================
-  # =====================================================================================
-
 
 end
 
