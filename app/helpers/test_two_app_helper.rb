@@ -11,11 +11,12 @@ module TestTwoAppHelper
     active_support_str(HtmlBeautifier.beautify(str))
   end
 
-  def snake_to_camel(str)
+  def snake_to_camel(str, capitalise_first_letter=false)
     camel = ''
     split_str = str.split('_')
+    capitalise_first_letter ? start_index = -1 : start_index = 0
     split_str.each_with_index do |current_str, index|
-      index > 0 ? camel_str = current_str.titleize : camel_str = current_str
+      index > start_index ? camel_str = current_str.titleize : camel_str = current_str
       camel << camel_str
     end
     camel
