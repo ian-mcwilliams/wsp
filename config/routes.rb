@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   get 'login', to: 'test_two_app#login'
 
+  get 'new_gameweek', to: 'test_two_app#new_gameweek'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
