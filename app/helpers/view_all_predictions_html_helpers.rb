@@ -3,12 +3,6 @@ module ViewAllPredictionsHtmlHelpers
   # =============================   VIEW ALL PREDICTIONS   ==============================
   # =====================================================================================
 
-  def get_view_all_predictions_page_html
-    set_view_all_predictions_page_html_list
-    set_view_all_predictions_page_html_list_detail
-    @current_page_html_content_str = process_html_list(@html_list)
-  end
-
   def set_view_all_predictions_page_html_list
     @html_list = {
         left_margin_div: {},

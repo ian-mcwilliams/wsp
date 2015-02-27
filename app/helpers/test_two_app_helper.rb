@@ -24,22 +24,9 @@ module TestTwoAppHelper
 
   def get_page_html(page_name)
     @current_page_html_content_str = ''
-    case page_name
-      when :sandbox
-        get_sandbox_output
-      when :login
-        get_login_page_html
-      when :predict
-        get_predict_match_page_html
-      when :view_all
-        get_view_all_predictions_page_html
-      when :new_gameweek
-        get_new_gameweek_page_html
-      when :enter_scores
-        get_enter_scores_page_html
-      when :register
-        get_register_page_html
-    end
+    @html_list = send("set_#{page_name}_page_html_list")
+    @html_list_detail = send("set_#{page_name}_page_html_list_detail")
+    @current_page_html_content_str = process_html_list(@html_list)
     prepare_html_str(@current_page_html_content_str)
   end
 

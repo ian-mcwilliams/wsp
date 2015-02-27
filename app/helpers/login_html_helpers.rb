@@ -4,12 +4,6 @@ module LoginHtmlHelpers
   # ==================================   LOGIN FORM   ===================================
   # =====================================================================================
 
-  def get_login_page_html
-    set_login_page_html_list
-    set_login_page_html_list_detail
-    @current_page_html_content_str = process_html_list(@html_list)
-  end
-
   def set_login_page_html_list
     @html_list = {
         left_margin_div: {},
