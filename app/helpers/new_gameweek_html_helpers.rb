@@ -1,12 +1,20 @@
-module InitialiseGameWeekHtmlHelpers
+module NewGameweekHtmlHelpers
 
   # =====================================================================================
   # ============================   INITIALISE GAME WEEK FORM   ==========================
   # =====================================================================================
 
-  def set_initialise_game_week_html_list
+  def get_new_gameweek_page_html
+    set_new_gameweek_page_html_list
+    set_new_gameweek_page_html_list_detail
+    @current_page_html_content_str = process_html_list(@html_list)
+  end
+
+
+
+  def set_new_gameweek_page_html_list
     @html_list = {
-        initalise_gameweek_form_div: {
+        new_gameweek_form_div: {
             cut_off_div: {
                 cut_off_text_div: {},
                 cut_off_details_div: {
@@ -76,6 +84,10 @@ module InitialiseGameWeekHtmlHelpers
             }
         }
     }
+
+  end
+
+  def set_new_gameweek_page_html_list_detail
 
   end
 
