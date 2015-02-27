@@ -37,6 +37,8 @@ module TestTwoAppHelper
         get_new_gameweek_page_html
       when :enter_scores
         get_enter_scores_page_html
+      when :register
+        get_register_page_html
     end
     prepare_html_str(@current_page_html_content_str)
   end

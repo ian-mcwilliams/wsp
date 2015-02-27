@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   get 'enter_scores', to: 'test_two_app#enter_scores'
 
+  get 'register', to: 'test_two_app#register'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
