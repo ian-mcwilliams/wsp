@@ -4,13 +4,7 @@ module PredictMatchesHtmlHelpers
   # =============================   PREDICT MATCHES FORM   ==============================
   # =====================================================================================
 
-  def get_predict_match_page_html
-    set_predict_match_page_html_list
-    set_predict_match_page_html_list_detail
-    @current_page_html_content_str = process_html_list(@html_list)
-  end
-
-  def set_predict_match_page_html_list
+  def set_predict_matches_page_html_list
     @html_list = {
         left_margin_div: {},
         predict_match_form_div: {
@@ -32,7 +26,7 @@ module PredictMatchesHtmlHelpers
     }
   end
 
-  def set_predict_match_page_html_list_detail
+  def set_predict_matches_page_html_list_detail
     @html_list_detail = {
         left_margin_div: {
             tag: :div,

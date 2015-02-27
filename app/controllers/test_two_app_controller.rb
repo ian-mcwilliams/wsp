@@ -52,7 +52,7 @@ class TestTwoAppController < ApplicationController
     end
 
     def get_all_users
-      %w[Ian Davy Ryan Adeeb Juan Mickey Manni Mark Ade Omar]
+      %w[Ian Davy] # Ryan Adeeb Juan Mickey Manni Mark Ade Omar]
     end
 
     def get_view_all_predictions_data_hash

@@ -1,16 +1,8 @@
 module NewGameweekHtmlHelpers
 
   # =====================================================================================
-  # ============================   INITIALISE GAME WEEK FORM   ==========================
+  # ============================   NEW GAMEWEEK FORM   ==================================
   # =====================================================================================
-
-  def get_new_gameweek_page_html
-    set_new_gameweek_page_html_list
-    set_new_gameweek_page_html_list_detail
-    @current_page_html_content_str = process_html_list(@html_list)
-  end
-
-
 
   def set_new_gameweek_page_html_list
     @html_list = {
