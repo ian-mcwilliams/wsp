@@ -35,6 +35,8 @@ module TestTwoAppHelper
         get_view_all_predictions_page_html
       when :new_gameweek
         get_new_gameweek_page_html
+      when :enter_scores
+        get_enter_scores_page_html
     end
     prepare_html_str(@current_page_html_content_str)
   end

@@ -1,6 +1,6 @@
 class TestTwoAppController < ApplicationController
   helper HtmlProcessorHelpers, LoginHtmlHelpers, PredictMatchesHtmlHelpers, ViewAllPredictionsHtmlHelpers,
-         PageFrameHelpers, NewGameweekHtmlHelpers
+         PageFrameHelpers, NewGameweekHtmlHelpers, EnterScoresHtmlHelpers
 
   def sandbox
 
@@ -22,6 +22,10 @@ class TestTwoAppController < ApplicationController
 
   def new_gameweek
     @current_page_title = 'New Gameweek'
+  end
+
+  def enter_scores
+    @current_page_title = 'Enter Scores'
   end
 
   private
