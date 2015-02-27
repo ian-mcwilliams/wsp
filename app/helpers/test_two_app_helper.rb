@@ -33,7 +33,7 @@ module TestTwoAppHelper
         get_predict_match_page_html
       when :view_all
         get_view_all_predictions_page_html
-      when :new_gameweek_path
+      when :new_gameweek
         get_new_gameweek_page_html
     end
     prepare_html_str(@current_page_html_content_str)
