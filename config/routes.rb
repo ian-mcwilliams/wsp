@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   get 'new_gameweek', to: 'test_two_app#new_gameweek'
 
+  get 'register', to: 'test_two_app#register'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
