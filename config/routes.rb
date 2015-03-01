@@ -19,6 +19,12 @@ Rails.application.routes.draw do
 
   get 'register', to: 'test_two_app#register'
 
+  get 'edit_settings', to: 'test_two_app#edit_settings'
+
+  get 'leaderboard', to: 'test_two_app#leaderboard'
+
+  get 'forgot_password', to: 'test_two_app#forgot_password'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
