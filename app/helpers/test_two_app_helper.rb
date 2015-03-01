@@ -24,8 +24,8 @@ module TestTwoAppHelper
 
   def get_page_html(page_name)
     @current_page_html_content_str = ''
-    @html_list = send("set_#{page_name}_page_html_list")
-    @html_list_detail = send("set_#{page_name}_page_html_list_detail")
+    @html_list = send("get_#{page_name}_page_html_list")
+    @html_list_detail = send("get_#{page_name}_page_html_list_detail")
     @current_page_html_content_str = process_html_list(@html_list)
     prepare_html_str(@current_page_html_content_str)
   end

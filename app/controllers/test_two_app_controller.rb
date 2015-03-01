@@ -1,5 +1,5 @@
 class TestTwoAppController < ApplicationController
-  helper HtmlProcessorHelpers, LoginHtmlHelpers, PredictMatchesHtmlHelpers, ViewAllPredictionsHtmlHelpers,
+  helper HtmlProcessorHelpers, LoginHtmlHelpers, PredictMatchesHtmlHelpers, ViewPredictionsHtmlHelpers,
          PageFrameHelpers, NewGameweekHtmlHelpers, EnterScoresHtmlHelpers, RegisterHtmlHelpers, ForgotPasswordHtmlHelpers,
          LeaderboardHtmlHelpers, EditSettingsHtmlHelpers
 
@@ -12,7 +12,7 @@ class TestTwoAppController < ApplicationController
     @matches = get_predict_matches_data_hash
   end
 
-  def view_all_predictions
+  def view_predictions
     @current_page_title = 'View All Predictions'
     @view_all_predictions = get_view_all_predictions_data_hash
   end

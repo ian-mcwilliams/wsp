@@ -4,8 +4,8 @@ module LoginHtmlHelpers
   # ==================================   LOGIN FORM   ===================================
   # =====================================================================================
 
-  def set_login_page_html_list
-    @html_list = {
+  def get_login_page_html_list
+    {
         left_margin_div: {},
         login_form_div: {
             login_form: {
@@ -31,8 +31,8 @@ module LoginHtmlHelpers
   end
 
 
-  def set_login_page_html_list_detail
-    @html_list_detail = {
+  def get_login_page_html_list_detail
+    {
         left_margin_div: {
             tag: :div,
             args: { class: 'col-xs-4'}
