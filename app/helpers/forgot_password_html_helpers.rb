@@ -1,15 +1,15 @@
-module EnterScoresHtmlHelpers
+module ForgotPasswordHtmlHelpers
 
   # =====================================================================================
-  # ==============================   ENTER SCORES FORM   ================================
+  # ==============================   FORGOT PASSWORD   ==================================
   # =====================================================================================
 
-  def get_enter_scores_page_html_list
+  def get_forgot_password_page_html_list
     {}
   end
 
 
-  def get_enter_scores_page_html_list_detail
+  def get_forgot_password_page_html_list_detail
     {}
   end
 

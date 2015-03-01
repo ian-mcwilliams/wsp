@@ -1,10 +1,10 @@
-module ViewAllPredictionsHtmlHelpers
+module ViewPredictionsHtmlHelpers
   # =====================================================================================
-  # =============================   VIEW ALL PREDICTIONS   ==============================
+  # =============================   VIEW PREDICTIONS   ==================================
   # =====================================================================================
 
-  def set_view_all_predictions_page_html_list
-    @html_list = {
+  def get_view_predictions_page_html_list
+    {
         left_margin_div: {},
         view_all_predictions_div: {
             header_row_div: {
@@ -26,8 +26,8 @@ module ViewAllPredictionsHtmlHelpers
     }
   end
 
-  def set_view_all_predictions_page_html_list_detail
-    @html_list_detail = {
+  def get_view_predictions_page_html_list_detail
+    {
         left_margin_div: {
             tag: :div,
             args: { class: 'col-sm-4 col-xs-12'}

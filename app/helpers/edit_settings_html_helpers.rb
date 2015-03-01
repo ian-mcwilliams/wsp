@@ -1,15 +1,15 @@
-module EnterScoresHtmlHelpers
+module EditSettingsHtmlHelpers
 
   # =====================================================================================
-  # ==============================   ENTER SCORES FORM   ================================
+  # ==============================   EDIT SETTINGS   ====================================
   # =====================================================================================
 
-  def get_enter_scores_page_html_list
+  def get_edit_settings_page_html_list
     {}
   end
 
 
-  def get_enter_scores_page_html_list_detail
+  def get_edit_settings_page_html_list_detail
     {}
   end
 

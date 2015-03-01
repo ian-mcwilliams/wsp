@@ -7,9 +7,9 @@ Rails.application.routes.draw do
 
   get 'sandbox', to: 'test_two_app#sandbox'
 
-  get 'predict', to: 'test_two_app#predict_matches'
+  get 'predict_matches', to: 'test_two_app#predict_matches'
 
-  get 'view', to: 'test_two_app#view_all_predictions'
+  get 'view_predictions', to: 'test_two_app#view_predictions'
 
   get 'login', to: 'test_two_app#login'
 
@@ -18,6 +18,12 @@ Rails.application.routes.draw do
   get 'enter_scores', to: 'test_two_app#enter_scores'
 
   get 'register', to: 'test_two_app#register'
+
+  get 'edit_settings', to: 'test_two_app#edit_settings'
+
+  get 'leaderboard', to: 'test_two_app#leaderboard'
+
+  get 'forgot_password', to: 'test_two_app#forgot_password'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

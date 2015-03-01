@@ -4,8 +4,8 @@ module NewGameweekHtmlHelpers
   # ============================   NEW GAMEWEEK FORM   ==================================
   # =====================================================================================
 
-  def set_new_gameweek_page_html_list
-    @html_list = {
+  def get_new_gameweek_page_html_list
+    {
         new_gameweek_form_div: {
             cut_off_div: {
                 cut_off_text_div: {},
@@ -76,11 +76,10 @@ module NewGameweekHtmlHelpers
             }
         }
     }
-
   end
 
-  def set_new_gameweek_page_html_list_detail
-
+  def get_new_gameweek_page_html_list_detail
+    {}
   end
 
 end

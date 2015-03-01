@@ -1,15 +1,15 @@
-module EnterScoresHtmlHelpers
+module LeaderboardHtmlHelpers
 
   # =====================================================================================
-  # ==============================   ENTER SCORES FORM   ================================
+  # ==============================   VIEW SEASON LEADERBOARD   ==========================
   # =====================================================================================
 
-  def get_enter_scores_page_html_list
+  def get_leaderboard_page_html_list
     {}
   end
 
 
-  def get_enter_scores_page_html_list_detail
+  def get_leaderboard_page_html_list_detail
     {}
   end
 

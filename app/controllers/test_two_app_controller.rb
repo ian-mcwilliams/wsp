@@ -1,6 +1,7 @@
 class TestTwoAppController < ApplicationController
-  helper HtmlProcessorHelpers, LoginHtmlHelpers, PredictMatchesHtmlHelpers, ViewAllPredictionsHtmlHelpers,
-         PageFrameHelpers, NewGameweekHtmlHelpers, EnterScoresHtmlHelpers, RegisterHtmlHelpers
+  helper HtmlProcessorHelpers, LoginHtmlHelpers, PredictMatchesHtmlHelpers, ViewPredictionsHtmlHelpers,
+         PageFrameHelpers, NewGameweekHtmlHelpers, EnterScoresHtmlHelpers, RegisterHtmlHelpers, ForgotPasswordHtmlHelpers,
+         LeaderboardHtmlHelpers, EditSettingsHtmlHelpers
 
   def sandbox
 
@@ -11,7 +12,7 @@ class TestTwoAppController < ApplicationController
     @matches = get_predict_matches_data_hash
   end
 
-  def view_all_predictions
+  def view_predictions
     @current_page_title = 'View All Predictions'
     @view_all_predictions = get_view_all_predictions_data_hash
   end
@@ -31,6 +32,20 @@ class TestTwoAppController < ApplicationController
   def register
     @current_page_title = 'Register'
   end
+
+  def edit_settings
+    @current_page_title = 'Edit Settings'
+  end
+
+  def leaderboard
+    @current_page_title = 'Leaderboard'
+  end
+
+  def forgot_password
+    @current_page_title = 'Forgot Password'
+  end
+
+
 
   private
 
