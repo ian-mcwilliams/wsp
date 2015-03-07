@@ -16,23 +16,52 @@ module HtmlProcessorHelpers
   def execute_html_processing(html_list, loop_id=nil)
     current_str = active_support_str
     html_list.each do |key, value|
-      loop_id ? id = "#{loop_id}#{snake_to_camel(key.to_s, true)}" : id = snake_to_camel(key.to_s)
+      puts 'DEBUG'
+      puts "key = #{key}"
       @detail = @html_list_detail[key]
+      pp ">>>#{@detail}"
+      set_text_div_detail if @detail.has_key?(:div) && @detail.has_key?(:text) && !@detail.has_key?(:tag)
+      if div_wrap_tags.include?(@detail[:tag]) && @detail.has_key?(:div)
+        div_detail = @detail.delete(:div)
+        @html_list_detail[key] = @detail
+        set_div_wrap_element_detail(div_detail)
+        descendant_html = {}
+        descendant_html[key] = value
+        raw_id = "#{key.to_s}_div".to_sym
+      else
+        descendant_html = value
+        raw_id = key
+      end
+      puts '/DEBUG'
+      loop_id ? id = "#{loop_id}#{snake_to_camel(raw_id.to_s, true)}" : id = snake_to_camel(raw_id.to_s)
       if @detail.has_key?(:loop)
         @iterate ? top_level_iterator = false : top_level_iterator = true
         @iterate = true if top_level_iterator
-        collection = get_items
+        collection = get_collection
         collection[:items].each_with_index do |item, index|
           current_id = "#{id}#{index}"
           instance_variable_set(collection[:subset], item) if collection.has_key?(:subset)
-          current_str << build_html_str(current_id, value)
+          current_str << build_html_str(current_id, descendant_html)
         end
         @iterate = false if top_level_iterator
       else
-        current_str << build_html_str(id, value)
+        current_str << build_html_str(id, descendant_html)
       end
     end
     current_str
+  end
+
+  def set_text_div_detail
+    @detail = {
+        tag: :div,
+        text: @detail[:text]
+    }.merge(@detail[:div])
+  end
+
+  def set_div_wrap_element_detail(div_detail)
+    @detail = {
+        tag: :div,
+    }.merge(div_detail)
   end
 
   def build_html_str(id, value)
@@ -52,8 +81,8 @@ module HtmlProcessorHelpers
   end
 
   def process_text
-    @detail.has_key?(:text) ? text = @detail[:text] : text = nil
-    if text
+    if @detail.has_key?(:text)
+      text = @detail[:text]
       if text.index('@') == 0
         split_text = text.split('##')
         text = instance_variable_get(split_text[0])
@@ -82,7 +111,7 @@ module HtmlProcessorHelpers
     end
   end
 
-  def get_items
+  def get_collection
     raw_data = @detail[:loop][:each]
     raw_data.index('=>') ? raw_data_arr = raw_data.split('=>') : raw_data_arr = [raw_data]
     if raw_data_arr[0].index('##')
@@ -130,6 +159,14 @@ module HtmlProcessorHelpers
 
   def create_password_field_tag(args)
     password_field(:password, args)
+  end
+
+  def div_wrap_tags
+    [
+        :input,
+        :submit,
+        :form
+    ]
   end
 
 end

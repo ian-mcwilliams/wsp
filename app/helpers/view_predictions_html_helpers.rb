@@ -40,7 +40,7 @@ module ViewPredictionsHtmlHelpers
             tag: :div,
             args: { class: 'row' }
         },
-        team_header_div: {
+        team_header_text: {
             text: 'Team',
             div: { args: { class: 'col-xs-6' } }
         },
