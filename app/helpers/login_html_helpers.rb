@@ -10,7 +10,7 @@ module LoginHtmlHelpers
         login_form_div: {
             login_form: {
                 login_email_div: {
-                    login_email_text_div: {},
+                    login_email_text: {},
                     login_email_input_div: {
                         login_email_input: {}
                     }
@@ -21,9 +21,7 @@ module LoginHtmlHelpers
                         login_password_input: {}
                     }
                 },
-                login_form_submit_div: {
-                    login_form_submit: {}
-                }
+                login_form_submit: {}
             }
         },
         right_margin_div: {}
@@ -49,9 +47,11 @@ module LoginHtmlHelpers
             tag: :div,
             args: { class: 'row' }
         },
-        login_email_text_div: {
-            tag: :div,
-            args: { class: 'col-xs-6', text: 'Email:' }
+        login_email_text: {
+            text: 'Email:',
+            div: {
+                args: { class: 'col-xs-6' }
+            }
         },
         login_email_input_div: {
             tag: :div,
@@ -69,7 +69,6 @@ module LoginHtmlHelpers
             tag: :div,
             args: { class: 'col-xs-6' },
             text: 'Password:'
-
         },
         login_password_input_div: {
             tag: :div,
@@ -79,14 +78,13 @@ module LoginHtmlHelpers
             tag: :input,
             args: { class: '' }
         },
-        login_form_submit_div: {
-            tag: :div,
-            args: { class: 'row' }
-        },
         login_form_submit: {
             tag: :submit,
             args: { class: 'btn-primary btn-lg' },
-            text: 'Login'
+            text: 'Login',
+            div: {
+                args: { class: 'row' }
+            }
         },
         right_margin_div: {
             tag: :div,
