@@ -8,20 +8,20 @@ module ViewPredictionsHtmlHelpers
         left_margin_div: {},
         view_all_predictions_div: {
             header_row_div: {
-                team_header_div: {},
+                team_header_text: {},
                 user_div: {},
             },
             predictions_row_div: {
                 team_names_div: {
-                    home_team_div: {},
-                    away_team_div: {}
+                    home_team_text: {},
+                    away_team_text: {}
                 },
                 predictions_div: {
-                    home_prediction_div: {},
-                    away_prediction_div: {}
+                    home_prediction_text: {},
+                    away_prediction_text: {}
                 }
             },
-        right_margin_div: {}
+            right_margin_div: {}
         }
     }
   end
@@ -41,9 +41,8 @@ module ViewPredictionsHtmlHelpers
             args: { class: 'row' }
         },
         team_header_div: {
-            tag: :div,
-            args: { class: 'col-xs-6' },
-            text: 'Team'
+            text: 'Team',
+            div: { args: { class: 'col-xs-6' } }
         },
         user_div: {
             tag: :div,
@@ -64,15 +63,13 @@ module ViewPredictionsHtmlHelpers
             tag: :div,
             args: { class: 'col-xs-6' },
         },
-        home_team_div: {
-            tag: :div,
-            args: { class: 'row col-xs-12' },
-            text: '@match##home_team'
+        home_team_text: {
+            text: '@match##home_team',
+            div: { args: { class: 'row col-xs-12' } }
         },
-        away_team_div: {
-            tag: :div,
-            args: { class: 'row col-xs-12' },
-            text: '@match##away_team'
+        away_team_text: {
+            text: '@match##away_team',
+            div: { args: { class: 'row col-xs-12' } }
         },
         predictions_div: {
             tag: :div,
@@ -81,15 +78,13 @@ module ViewPredictionsHtmlHelpers
                 each: '@match##predictions=>@prediction'
              }
         },
-        home_prediction_div: {
-            tag: :div,
-            args: { class: 'row col-xs-12' },
-            text: '@prediction##home_score'
+        home_prediction_text: {
+            text: '@prediction##home_score',
+            div: { args: { class: 'row col-xs-12' } }
         },
-        away_prediction_div: {
-            tag: :div,
-            args: { class: 'row col-xs-12' },
-            text: '@prediction##away_score'
+        away_prediction_text: {
+            text: '@prediction##away_score',
+            div: { args: { class: 'row col-xs-12' } }
         },
         right_margin_div: {
             tag: :div,
