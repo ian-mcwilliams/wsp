@@ -7,20 +7,14 @@ module PredictMatchesHtmlHelpers
   def get_predict_matches_page_html_list
     {
         left_margin_div: {},
-        predict_match_form_div: {
-            predict_match_form: {
-                predict_match_div: {
-                    predict_match_team_div: {
-                        predict_match_team_text_div: {},
-                        predict_match_team_input_div: {
-                            predict_match_team_input: {}
-                        }
-                    }
-                },
-                predict_match_form_submit_div: {
-                    predict_match_form_submit: {}
+        predict_match_form: {
+            predict_match_div: {
+                predict_match_team_div: {
+                    predict_match_team_text: {},
+                    predict_match_team_input: {}
                 }
-            }
+            },
+            predict_match_form_submit: {}
         },
         right_margin_div: {}
     }
@@ -32,13 +26,10 @@ module PredictMatchesHtmlHelpers
             tag: :div,
             args: { class: 'col-sm-4 col-xs-12'}
         },
-        predict_match_form_div: {
-            tag: :div,
-            args: { class: 'col-sm-4 col-xs-12' }
-        },
         predict_match_form: {
             tag: :form,
-            args: { controller: 'test_two_app', action: 'predict_matches', method: 'post' }
+            args: { controller: 'test_two_app', action: 'predict_matches', method: 'post' },
+            div: { args: { class: 'col-sm-4 col-xs-12' } }
         },
         predict_match_div: {
             tag: :div,
@@ -54,28 +45,21 @@ module PredictMatchesHtmlHelpers
                 each: '@teams=>@team'
             }
         },
-        predict_match_team_text_div: {
-            tag: :div,
-            args: { class: 'col-xs-6 testDiv4' },
-            text: '@team##name'
-        },
-        predict_match_team_input_div: {
-            tag: :div,
-            args: { class: 'col-xs-6' }
+        predict_match_team_text: {
+            text: '@team##name',
+            div: { args: { class: 'col-xs-6 testDiv4' } }
         },
         predict_match_team_input: {
             tag: :input,
             args: { class: 'testDiv2', style: 'width:32px' },
-            name: '@team##key'
-        },
-        predict_match_form_submit_div: {
-            tag: :div,
-            args: { class: 'row' }
+            name: '@team##key',
+            div: { args: { class: 'col-xs-6' } }
         },
         predict_match_form_submit: {
             tag: :submit,
             args: { class: 'btn-primary btn-lg' },
-            value: 'Predict'
+            value: 'Predict',
+            div: { args: { class: 'row' } }
         },
         right_margin_div: {
             tag: :div,
